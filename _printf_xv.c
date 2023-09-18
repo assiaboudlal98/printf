@@ -68,6 +68,8 @@ int _printf(const char *format, ...)
 		}
 		format++;
 	}
+	if (cnt_x > 0)
+		write_buffer(buf, &cnt_x);
 	va_end(args_arx);
 	return (cnt_x);
 }
