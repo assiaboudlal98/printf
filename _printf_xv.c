@@ -14,30 +14,22 @@ int _printf(const char *format, ...)
 
 	va_start(args_arx, format);
 	cnt_x = 0;
-
 	while (*format)
 	{
 		if (*format != '%')
-		{
-			write(1, format, 1);
-			cnt_x++;
-		}
+			cnt_x += write(1, format, 1);
 		else
 		{
 			format++;
 			if (*format == '\0')
 				break;
 			if (*format == '%')
-			{
-				write(1, format, 1);
-				cnt_x++;
-			}
+				cnt_x += write(1, format, 1);
 			else if (*format == 'c')
 			{
 				char c = va_arg(args_arx, int);
 
-				write(1, &c, 1);
-				cnt_x++;
+				cnt_x += write(1, &c, 1);
 			}
 			else if (*format == 's')
 			{
