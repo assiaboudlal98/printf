@@ -7,70 +7,50 @@
 
 #define BUFFER_SIZE 1024
 
-static int write_buffer(char *buf, int *cnt_x)
-{
-	int bytes_written = write(1, buf, *cnt_x);
-	*cnt_x = 0;
-	return bytes_written;
-}
-
 int _printf(const char *format, ...)
 {
 	va_list args_arx;
 	int cnt_x;
-	char buf[BUFFER_SIZE];
 
 	va_start(args_arx, format);
 	cnt_x = 0;
 
 	while (*format)
 	{
-		if(*format == '%')
+		if (*format == '%')
 		{
 			format++;
-			switch (*format)
+			if (*format == 'c')
 			{
-				case 'c':{
 					char c = va_arg(args_arx, int);
-					buf[cnt_x++] = c;
-					if (cnt_x == BUFFER_SIZE)
-						write_buffer(buf, &cnt_x);
-					break;
-					 }
-				case 's':{
+
+					write(1, &c, 1);
+					cnt_x++;
+			}
+			else if (*format == 's')
+			{
 					char *s = va_arg(args_arx, char*);
+
 					while (*s)
-						 {
-							 buf[cnt_x++] = *s;
-							 s++;
-							 if (cnt_x == BUFFER_SIZE)
-								 write_buffer(buf, &cnt_x);
-							 s++;
-						 }
-					break;
-					 }
-				case '%':{
-					buf[cnt_x++] = '%';
-					if (cnt_x == BUFFER_SIZE)
-						write_buffer(buf, &cnt_x);
-					break;
-					 }
-				default:{
-					break;
+					{
+						write(1, &s, 1);
+						s++;
+						cnt_x++;
 					}
+			}
+			else if (*format == '%')
+			{
+				write(1, "%", 1);
+				cnt_x++;
 			}
 		}
 		else
 		{
-			buf[cnt_x++] = *format;
-			if (cnt_x == BUFFER_SIZE)
-				write_buffer(buf, &cnt_x);
+			write(1, format, 1);
+			cnt_x++;
 		}
 		format++;
 	}
-	if (cnt_x > 0)
-		write_buffer(buf, &cnt_x);
 	va_end(args_arx);
 	return (cnt_x);
 }
-
