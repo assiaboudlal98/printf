@@ -1,46 +1,56 @@
 #include "main.h"
-
+/**
+ *_printf - function that prints char and str and prcent,
+ * @format: pointer variable,
+ * Return: return the value of cnt_x,
+ */
 int _printf(const char *format, ...)
 {
 	va_list args_arx;
 	int cnt_x;
-	char *str;
+
+	if (format == NULL)
+		return (-1);
 
 	va_start(args_arx, format);
 	cnt_x = 0;
 
 	while (*format)
 	{
-		if (*format == '%')
+		if (*format != '%')
 		{
-			format++;
-			switch (*format)
-			{
-				case 'c':{
-					char c = va_arg(args_arx, int);
-
-					cnt_x += write(1, &c, 1);
-					break;
-				}
-				case 's':{
-					str = va_arg(args_arx, char*);
-
-					while (*str)
-					{
-						cnt_x += write(1, &str, 1);
-						str++;
-					}
-					break;
-				}
-				case '%':{
-				cnt_x += write(1, "%", 1);
-				break;
-				}
-			}
+			write(1, format, 1);
+			cnt_x++;
 		}
 		else
-			cnt_x += write(1, format, 1);
-		format++;
+		{
+			format++;
+			if (*format == '\0')
+				break;
+			if (*format == '%')
+			{
+				write(1, format, 1);
+				cnt_x++;
+			}
+			else if (*format == 'c')
+			{
+				char c = va_arg(args_arx, int);
+
+				write(1, &c, 1);
+				cnt_x++;
+			}
+			else if (*format == 's')
+			{
+				char *s = va_arg(args_arx, char*);
+				int s_tln = 0;
+
+				while (s[s_tln] != '\0')
+					s_tln++;
+				write(1, s, s_tln);
+				cnt_x += s_tln;
+			}
+		}
+	format++;
 	}
 	va_end(args_arx);
 	return (cnt_x);
