@@ -1,11 +1,4 @@
-#include <stdio.h>
-#include <stdarg.h>
-#include <unistd.h>
-#include <limits.h>
 #include "main.h"
-#include <stdlib.h>
-
-#define BUFFER_SIZE 1024
 
 int _printf(const char *format, ...)
 {
@@ -27,16 +20,6 @@ int _printf(const char *format, ...)
 					char c = va_arg(args_arx, int);
 
 					cnt_x += write(1, &c, 1);
-					break;
-				}
-				case 'd':
-				case 'i':{
-					int num = va_arg(args_arx, int);
-					char numt[20];
-					int numln;
-
-					numln = snprintf(numt, sizeof(numt), "%d", num);
-					cnt_x += write(1, numt, numln);
 					break;
 				}
 				case 's':{
