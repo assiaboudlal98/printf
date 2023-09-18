@@ -32,7 +32,7 @@ int h_print(const char *fmt, int *ind, va_list list, char buffer[],
 			return (-1);
 		unknown_eln += write(1, "%%", 1);
 		if (jtn[*ind - 1] == ' ')
-			unknow_len += write(1, " ", 1);
+			unknown_eln += write(1, " ", 1);
 		else if (wdt)
 		{
 			--(*ind);
