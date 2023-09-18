@@ -1,10 +1,8 @@
-#ifndef _PRO_JECT_H
-#define _PRO_JECT_H
-#include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
+#ifndef _PRINTF_H
+#define _PRINTF_H
+
 #include <unistd.h>
-#include <limits.h>
+#include <stdarg.h>
 
 int _printf(const char *format, ...);
 

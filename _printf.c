@@ -1,52 +1,49 @@
 #include "main.h"
-
 /**
- * _printf - prints 
- * @format: string's format
- *
- * Return: number of bytes that have printed
+ *_printf - function that prints char and str and prcent,
+ * @format: pointer variable,
+ * Return: return the value of cnt_x,
  */
 int _printf(const char *format, ...)
 {
-	int sum = 1;
-	va_list jt;
-	char *p, *start;
-	params_t params = PARAMS_INIT;
+	va_list args_arx;
+	int cnt_x;
 
-	va_start(jt, format);
+	if (format == NULL)
+		return (-1);
 
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
-	for (p = (char *) format; *p; p++)
+	va_start(args_arx, format);
+	cnt_x = 0;
+	while (*format)
 	{
-		init_params(&params, jt);
-		if (*p != '%')
-		{
-			sum += _putchar(*p);
-			continue;
-		}
-		start = p;
-		p++;
-		while (get_flag(p, &params)) /* while char at p is flag char */
-		{
-			p++; /* next char */
-		}
-		p = get_width(p, &params, jt);
-		p = get_precision(p, &params, jt);
-		if (get_modifier(p, &params))
-			p++;
-		if (!get_specifier(p))
-			sum += print_from_to(start, p,
-				params.1_modifier || params.h_modifier ? p - 1 : 0);
+		if (*format != '%')
+			cnt_x += write(1, format, 1);
 		else
-			sum += get_print_func(p, jt, &params);
+		{
+			format++;
+			if (*format == '\0')
+				break;
+			if (*format == '%')
+				cnt_x += write(1, format, 1);
+			else if (*format == 'c')
+			{
+				char c = va_arg(args_arx, int);
+
+				cnt_x += write(1, &c, 1);
+			}
+			else if (*format == 's')
+			{
+				char *s = va_arg(args_arx, char*);
+				int s_tln = 0;
+
+				while (s[s_tln] != '\0')
+					s_tln++;
+				write(1, s, s_tln);
+				cnt_x += s_tln;
+			}
+		}
+	format++;
 	}
-	_putchar(BUF_FLUSH);
-	va_end(jt);
-	return (sum);
+	va_end(args_arx);
+	return (cnt_x);
 }
-
-
-
