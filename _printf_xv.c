@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <limits.h>
-#include <main.h>
+#include "main.h"
 int _printf(const char *format, ...)
 {
 	va_list args_arx;
@@ -18,12 +18,13 @@ int _printf(const char *format, ...)
 			format++;
 			switch (*format)
 			{
-				case 'c':
+				case 'c':{
 					char c = va_arg(args_arx, int);
 					putchar(c);
 					cnt_x++;
 					break;
-				case 's':
+					 }
+				case 's':{
 					char *s = va_arg(args_arx, int);
 					while (*s)
 						 {
@@ -32,12 +33,15 @@ int _printf(const char *format, ...)
 							 cnt_x++;
 						 }
 					break;
-				case '%':
+					 }
+				case '%':{
 					putchar('%');
 					cnt_x++;
 					break;
-				default:
+					 }
+				default:{
 					break;
+					}
 			}
 		}
 		else
