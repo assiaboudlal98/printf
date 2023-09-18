@@ -11,6 +11,7 @@ int _printf(const char *format, ...)
 {
 	va_list args_arx;
 	int cnt_x;
+	char *str;
 
 	va_start(args_arx, format);
 	cnt_x = 0;
@@ -20,35 +21,42 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (*format == 'c')
+			switch (*format)
 			{
+				case 'c':{
 					char c = va_arg(args_arx, int);
 
-					write(1, &c, 1);
-					cnt_x++;
-			}
-			else if (*format == 's')
-			{
-					char *s = va_arg(args_arx, char*);
+					cnt_x += write(1, &c, 1);
+					break;
+				}
+				case 'd':
+				case 'i':{
+					int num = va_arg(args_arx, int);
+					char numt[20];
+					int numln;
 
-					while (*s)
+					numln = snprintf(numt, sizeof(numt), "%d", num);
+					cnt_x += write(1, numt, numln);
+					break;
+				}
+				case 's':{
+					str = va_arg(args_arx, char*);
+
+					while (*str)
 					{
-						write(1, &s, 1);
-						s++;
-						cnt_x++;
+						cnt_x += write(1, &str, 1);
+						str++;
 					}
-			}
-			else if (*format == '%')
-			{
-				write(1, "%", 1);
-				cnt_x++;
+					break;
+				}
+				case '%':{
+				cnt_x += write(1, "%", 1);
+				break;
+				}
 			}
 		}
 		else
-		{
-			write(1, format, 1);
-			cnt_x++;
-		}
+			cnt_x += write(1, format, 1);
 		format++;
 	}
 	va_end(args_arx);
