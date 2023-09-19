@@ -1,7 +1,11 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include "main.h"
-
+/**
+ * _printf - print function,
+ * @format: var args,
+ * Return: the value of cnt_x,
+ */
 int _printf(const char *format, ...)
 {
 	va_list args_arx;
