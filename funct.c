@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdio.h>
+
 /**
  * _putchar - Write a character to stdout
  * @c: The character to write
@@ -8,6 +10,27 @@
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
+}
+/**
+ * hnd_str - function print str,
+ * @s: pointer str,
+ * Return: the value of i,
+ */
+int hnd_str(char *s)
+{
+	int i = 0;
+
+	if (s == NULL)
+	{
+		hnd_str("(null)");
+		return (0);
+	}
+	while (s[i])
+	{
+	_putchar(s[i]);
+	i++;
+	}
+	return (i);
 }
 /**
  * print_char - Print a character
