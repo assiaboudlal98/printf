@@ -1,9 +1,19 @@
-#ifndef _PRINTF_H
-#define _PRINTF_H
+#ifndef MAIN_H
+#define MAIN_H
 
-#include <unistd.h>
 #include <stdarg.h>
+#include <unistd.h>
 
+/* main.c */
 int _printf(const char *format, ...);
 
-#endif
+/* _putchar.c */
+int _putchar(char c);
+
+/* printf_functions.c */
+int print_char(va_list args);
+int print_string(va_list args);
+int print_percent(va_list args);
+
+int hnd_str(char *s);
+#endif /* MAIN_H */
