@@ -12,11 +12,11 @@
  * Return: 1 or 2;
  */
 int h_print(const char *jtn, int *ind, va_list list, char buffer[],
-	int flags, int width, int precision, int size)
+	int flg, int width, int prcs, int sz)
 {
 	int i, unknown_eln = 0, prt_char = -1;
 	jtn_s jtn_types[] = {
-		{'c', print_char}, {'s', print_string}, {'%', print_percent},
+		{'c', pr_char}, {'s', pr_string}, {'%', pr_prcn},
 		{'i', print_int}, {'d', print_int}, {'b', print_binary},
 		{'u', print_unsigned}, {'o', print_octal}, {'x', print_hexadecimal},
 		{'X', print_hexa_upper}, {'p', print_pointer}, {'S', print_non_printable},
