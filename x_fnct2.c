@@ -59,7 +59,7 @@ int print_pointer(va_list types, char buffer[],
  * @buffer: it handles to print
  * @flg:  Calculates active flg
  * @wdt: get wdt
- * @precision: Precision specification
+ * @prcs: Precision specification
  * @sz: Sz specifier
  * Return: Number of chars printed
  */

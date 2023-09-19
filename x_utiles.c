@@ -52,13 +52,13 @@ int is_digit(char c)
 }
 
 /**
- * convert_size_number - For casting a number to the specified size
+ * convert_sz_number - For casting a number to the specified size
  * @num: Number for casting.
- * @size: Number indicats the type casts.
+ * @sz: Number indicats the type casts.
  *
  * Return: Casted value of num
  */
-long int convert_size_number(long int num, int sz)
+long int convert_sz_number(long int num, int sz)
 {
 	if (sz == S_LONG)
 		return (num);
@@ -69,13 +69,13 @@ long int convert_size_number(long int num, int sz)
 }
 
 /**
- * convert_size_unsgnd - For casting a number to the specified size
+ * convert_sz_unsgnd - For casting a number to the specified size
  * @num: Number for  casting
  * @sz: Number indicats type to cast it
  *
  * Return: Casted value of num
  */
-long int convert_size_unsgnd(unsigned long int num, int size)
+long int convert_sz_unsgnd(unsigned long int num, int sz)
 {
 	if (sz == S_LONG)
 		return (num);
