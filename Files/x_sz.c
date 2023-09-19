@@ -6,19 +6,19 @@
  *
  * Return: return Prcs.
  */
-int get_size(const char *format, int *i)
+int x_sz(const char *format, int *i)
 {
-	int curr_i = *i + 1;
-	int size = 0;
+	int etg_i = *i + 1;
+	int sz = 0;
 
-	if (format[curr_i] == 'l')
-		size = S_LONG;
-	else if (format[curr_i] == 'h')
-		size = S_SHORT;
+	if (format[et_i] == 'l')
+		sz = S_LONG;
+	else if (format[etg_i] == 'h')
+		sz = S_SHORT;
 
-	if (size == 0)
-		*i = curr_i - 1;
+	if (sz == 0)
+		*i = etg_i - 1;
 	else
-		*i = curr_i;
-	return (size);
+		*i = etg_i;
+	return (sz);
 }
