@@ -22,8 +22,7 @@ int hnd_str(char *s)
 
 	if (s == NULL)
 	{
-		hnd_str("(null)");
-		return (0);
+		return (hnd_str("(null)"));
 	}
 	while (s[i])
 	{
