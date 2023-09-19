@@ -42,7 +42,7 @@ int print_pointer(va_list types, char buffer[],
 		padd = '0';
 	if (flg & F_PLUS)
 		extra_c = '+', length++;
-	else if (flags & F_SPACE)
+	else if (flg & F_SPACE)
 		extra_c = ' ', length++;
 
 	ind++;

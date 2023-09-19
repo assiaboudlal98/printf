@@ -24,7 +24,7 @@ int h_print(const char *jtn, int *ind, va_list list, char buffer[],
 	};
 	for (i = 0; jtn_types[i].jtn != '\0'; i++)
 		if (jtn[*ind] == jtn_types[i].jtn)
-			return (jtn_types[i].fn(list, buffer, flg, width, prcs, sz));
+			return (jtn_types[i].fn(list, buffer, flg, wdt, prcs, sz));
 
 	if (jtn_types[i].jtn == '\0')
 	{

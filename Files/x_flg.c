@@ -10,7 +10,7 @@ int x_flg(const char *format, int *i)
 {
 	/* - + 0 # ' ' */
 	/* 1 2 4 8  16 */
-	int k, curr_i;
+	int k, etg_i;
 	int flg = 0;
 	const char FLG_P[] = {'-', '+', '0', '#', ' ', '\0'};
 	const int FLG_y[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
@@ -18,9 +18,9 @@ int x_flg(const char *format, int *i)
 	for (etg_i = *i + 1; format[etg_i] != '\0'; etg_i++)
 	{
 		for (k = 0; FLG_P[k] != '\0'; k++)
-			if (format[etg_i] == FLG_P[j])
+			if (format[etg_i] == FLG_P[k])
 			{
-				flg |= FLG_Y[j];
+				flg |= FLG_Y[k];
 				break;
 			}
 
