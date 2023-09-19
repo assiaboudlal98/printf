@@ -1,9 +1,7 @@
-#include <stdarg.h>
-#include <unistd.h>
 #include "main.h"
 /**
  * _printf - print function,
- * @format: var args,
+ * @format: var format str,
  * Return: the value of cnt_x,
  */
 int _printf(const char *format, ...)
@@ -20,17 +18,9 @@ int _printf(const char *format, ...)
 	{
 		format++;
 		if (*format == 'c')
-		{
-		char c = va_arg(args_arx, int);
-
-		cnt_x += _putchar(c);
-		}
+			cnt_x += _putchar(va_arg(args_arx, int));
 		else if (*format == 's')
-		{
-		char *s = va_arg(args_arx, char *);
-
-		cnt_x += hnd_str(s);
-		}
+			cnt_x += hnd_str(va_arg(args_arx, char *));
 		else if (*format == '%')
 		{
 			_putchar('%');
@@ -50,8 +40,7 @@ int _printf(const char *format, ...)
 	}
 	else
 	{
-		_putchar(*format);
-		format++;
+		_putchar(*format++);
 		cnt_x++;
 	}
 	}
