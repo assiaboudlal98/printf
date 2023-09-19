@@ -17,14 +17,14 @@ int x_flg(const char *format, int *i)
 
 	for (etg_i = *i + 1; format[etg_i] != '\0'; etg_i++)
 	{
-		for (k = 0; FLG_CH[k] != '\0'; k++)
-			if (format[etg_i] == FLG_CH[j])
+		for (k = 0; FLG_P[k] != '\0'; k++)
+			if (format[etg_i] == FLG_P[j])
 			{
-				flg |= FLG_ARR[j];
+				flg |= FLG_Y[j];
 				break;
 			}
 
-		if (FLG_CH[k] == 0)
+		if (FLG_P[k] == 0)
 			break;
 	}
 

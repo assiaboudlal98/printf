@@ -11,7 +11,7 @@
  * @size: telling the size
  * Return: 1 or 2;
  */
-int h_print(const char *fmt, int *ind, va_list list, char buffer[],
+int h_print(const char *jtn, int *ind, va_list list, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	int i, unknown_eln = 0, prt_char = -1;
