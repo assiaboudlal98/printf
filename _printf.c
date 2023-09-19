@@ -1,49 +1,78 @@
-#include "main.h"
+#include <stdarg.h>
+#include <unistd.h>
 /**
- *_printf - function that prints char and str and prcent,
- * @format: pointer variable,
- * Return: return the value of cnt_x,
+ * _putchar - Write a character to stdout
+ * @c: The character to write
+ * Return: 1 on success, -1 on failure
+ */int _putchar(char c)
+{
+	return write(1, &c, 1);
+}
+/**
+ * print_char - Print a character
+ * @args: The arguments list
+ * Return: Number of characters printed
+ */
+int print_char(va_list args)
+{
+	return _putchar(va_arg(args, int));
+}
+/**
+ * print_string - Print a string
+ * @args: The arguments list
+ * Return: Number of characters printed
+ */
+int print_string(va_list args)
+{
+	char *str = va_arg(args, char *);
+	if (str == NULL)
+		str = "(null)";
+	int count = 0;
+	while (*str)
+	{
+		_putchar(*str);
+		str++;
+		count++;
+	}
+	return count;
+}
+/**
+ * print_percent - Print a percent character
+ * @args: The arguments list
+ * Return: Number of characters printed
+ */
+int print_percent(__attribute__((unused)) va_list args)
+{
+	return _putchar('%');
+}
+/**
+ * _printf - Custom printf function
+ * @format: Format string
+ * Return: Number of characters printed (excluding null byte)
  */
 int _printf(const char *format, ...)
 {
-	va_list args_arx;
-	int cnt_x;
-
-	if (format == NULL)
-		return (-1);
-
-	va_start(args_arx, format);
-	cnt_x = 0;
+	va_list args;
+	int count = 0;
+	va_start(args, format);
 	while (*format)
 	{
-		if (*format != '%')
-			cnt_x += write(1, format, 1);
-		else
+		if (*format == '%')
 		{
 			format++;
-			if (*format == '\0')
-				break;
-			if (*format == '%')
-				cnt_x += write(1, format, 1);
-			else if (*format == 'c')
-			{
-				char c = va_arg(args_arx, int);
-
-				cnt_x += write(1, &c, 1);
-			}
+			if (*format == 'c')
+				count += print_char(args);
 			else if (*format == 's')
-			{
-				char *s = va_arg(args_arx, char*);
-				int s_tln = 0;
-
-				while (s[s_tln] != '\0')
-					s_tln++;
-				write(1, s, s_tln);
-				cnt_x += s_tln;
-			}
+				count += print_string(args);
+			else if (*format == '%')
+				count += print_percent(args);
 		}
-	format++;
+		else {
+			_putchar(*format);
+			count++;
+		}
+		format++;
 	}
-	va_end(args_arx);
-	return (cnt_x);
+	va_end(args);
+	return count;
 }
