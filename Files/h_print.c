@@ -1,18 +1,18 @@
 #include "main.h"
 /**
  * h_print - looking for its type it prints the argument
- * @fmt: to prints the arguments and format the string.
+ * @jtn: to prints the arguments and format the string.
  * @list: argument's list to be printed
  * @ind: ind.
  * @buffer: array's buffer for handling print.
- * @flags: for Calculating active flags
- * @width: get wdt.
- * @precision: for Precision specification
- * @size: telling the size
+ * @flg: for Calculating active flags
+ * @wdt: get wdt.
+ * @prcs: for Precision specification
+ * @sz: telling the size
  * Return: 1 or 2;
  */
 int h_print(const char *jtn, int *ind, va_list list, char buffer[],
-	int flg, int width, int prcs, int sz)
+	int flg, int wdt, int prcs, int sz)
 {
 	int i, unknown_eln = 0, prt_char = -1;
 	jtn_s jtn_types[] = {
