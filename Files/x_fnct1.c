@@ -6,13 +6,13 @@
  * @types: List a of arguments
  * @buffer: Buffer array to handle print
  * @flg:  Calculates active flg
- * @width: get width
+ * @wdt: get width
  * @prcs: Precision specifi
  * @sz: Size specif
  * Return: Number of chars printed.
  */
 int pr_uns(va_list types, char buffer[],
-	int flg, int width, int prcs, int sz)
+	int flg, int wdt, int prcs, int sz)
 {
 	int i = BUFF_SIZE - 2;
 	unsigned long int num = va_arg(types, unsigned long int);
@@ -32,7 +32,7 @@ int pr_uns(va_list types, char buffer[],
 
 	i++;
 
-	return (write_unsgnd(0, i, buffer, flg, width, prcs, sz));
+	return (write_unsgnd(0, i, buffer, flg, wdt, prcs, sz));
 }
 
 /**********UNSIGNED Nmbr IN OCt  ****************/
@@ -41,20 +41,20 @@ int pr_uns(va_list types, char buffer[],
  * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * @flg:  Calculates active flags
- * @width: get width
+ * @wdt: get width
  * @prcs: Precision specification
  * @sz: Size specifier
  * Return: Number of chars printed
  */
 int pr_oct(va_list types, char buffer[],
-	int flg, int width, int prcs, int sz)
+	int flg, int wdt, int prcs, int sz)
 {
 
 	int i = BUFF_SIZE - 2;
 	unsigned long int num = va_arg(types, unsigned long int);
 	unsigned long int init_num = num;
 
-	UNUSED(width);
+	UNUSED(wdt);
 
 	num = convert_size_unsgnd(num, sz);
 
@@ -74,7 +74,7 @@ int pr_oct(va_list types, char buffer[],
 
 	i++;
 
-	return (write_unsgnd(0, i, buffer, flg, width, prcs, sz));
+	return (write_unsgnd(0, i, buffer, flg, wdt, prcs, sz));
 }
 
 /************ UNSIGNED NUMB Hex**************/
@@ -83,16 +83,16 @@ int pr_oct(va_list types, char buffer[],
  * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * @flg:  Calculates active flags
- * @width: get width
+ * @wdt: get width
  * @prcs: Precision specification
  * @sz: Size specifier
  * Return: Number of chars printed
  */
 int pr_hex(va_list types, char buffer[],
-	int flg, int width, int prcs, int sz)
+	int flg, int wdt, int prcs, int sz)
 {
 	return (print_hexa(types, "0123456789abcdef", buffer,
-		flg, 'x', width, prcs, sz));
+		flg, 'x', wdt, prcs, sz));
 }
 
 /************* UNSIGNED NUMB UPP HEX**************/
@@ -101,16 +101,16 @@ int pr_hex(va_list types, char buffer[],
  * @types: Lista of arguments
  * @buffer: Buffer array to handle print
  * @flg:  Calculates active flags
- * @width: get width
+ * @wdt: get width
  * @prcs: Precision specification
  * @sz: Size specifier
  * Return: Number of chars printed
  */
 int pr_hex_upp(va_list types, char buffer[],
-	int flg, int width, int prcs, int sz)
+	int flg, int wdt, int prcs, int sz)
 {
 	return (print_hexa(types, "0123456789ABCDEF", buffer,
-		flg, 'X', width, prcs, sz));
+		flg, 'X', wdt, prcs, sz));
 }
 
 /************** PRINT HEXX NUM IN LOWER OR UPPER **************/
@@ -120,21 +120,21 @@ int pr_hex_upp(va_list types, char buffer[],
  * @map_to: Array of values to map the number to
  * @buffer: Buffer array to handle print
  * @flg:  Calculates active flags
- * @flag_ch: Calculates active flags
- * @width: get width
+ * @flg_p: Calculates active flags
+ * @wdt: get width
  * @prcs: Precision specification
  * @sz: Size specifier
  * @sz: Size specification
  * Return: Number of chars printed
  */
 int pr_hexa(va_list types, char map_to[], char buffer[],
-	int flg, char flag_ch, int width, int prcs, int sz)
+	int flg, char flg_p, int wdt, int prcs, int sz)
 {
 	int i = BUFF_SIZE - 2;
 	unsigned long int num = va_arg(types, unsigned long int);
 	unsigned long int init_num = num;
 
-	UNUSED(width);
+	UNUSED(wdt);
 
 	num = convert_size_unsgnd(num, sz);
 
@@ -151,11 +151,11 @@ int pr_hexa(va_list types, char map_to[], char buffer[],
 
 	if (flg & F_HASH && init_num != 0)
 	{
-		buffer[i--] = flag_ch;
+		buffer[i--] = flg_p;
 		buffer[i--] = '0';
 	}
 
 	i++;
 
-	return (write_unsgnd(0, i, buffer, flg, width, prcs, sz));
+	return (write_unsgnd(0, i, buffer, flg, wdt, prcs, sz));
 }
