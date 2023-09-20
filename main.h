@@ -11,4 +11,6 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 
 int hnd_str(char *s);
+int hnd_nbr(int num_ma);
+int len_num(int num_ma);
 #endif /* MAIN_H */

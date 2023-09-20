@@ -26,6 +26,8 @@ int _printf(const char *format, ...)
 			_putchar('%');
 			cnt_x++;
 		}
+		else if (*format == 'd' || *format == 'i')
+			cnt_x += hnd_nbr(va_arg(args_arx, int));
 		else
 		{
 		_putchar('%');
