@@ -12,4 +12,3 @@ int _putchar(char c);
 
 int hnd_str(char *s);
 #endif /* MAIN_H */
-
